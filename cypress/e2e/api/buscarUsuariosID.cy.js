@@ -27,7 +27,7 @@ describe("ServeRest - API Usuários", () => {
             expect(resGet.body).to.have.property("email", usuario.email);
   
             cy.log(`Usuário buscado com sucesso: ${resGet.body.nome}`);
-            console.log("👤 Usuário retornado:", resGet.body);
+            console.log("Usuário retornado:", resGet.body);
           });
         });
       });
