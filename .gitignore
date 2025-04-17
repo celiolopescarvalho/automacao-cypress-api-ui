@@ -1,18 +1,29 @@
+# Node modules
 node_modules/
-allure-results/
-allure-report/
-cypress/downloads/
+
+# Cypress screenshots e vídeos gerados
 cypress/screenshots/
 cypress/videos/
-package-lock.json
-yarn.lock
-.cache/
+
+# Allure results
+allure-results/
+allure-report/
+
+# Ambiente e configs locais
+.env
+.env.local
+.DS_Store
+
+# Cache do Cypress
 .cypress_cache/
+CypressDownloads/
+
+# Arquivos de log
+*.log
+
+# Configs do editor
 .vscode/
 .idea/
-.yarn/install-state.gz
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
+
+# Arquivos de sistema
+Thumbs.db
