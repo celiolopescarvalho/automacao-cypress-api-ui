@@ -5,11 +5,17 @@
   "main": "index.js",
   "scripts": {
     "dev": "cypress open",
-    "test": "cypress run"
+    "test": "cypress run",
+    "test:api": "cypress run --spec 'cypress/e2e/api/**/*.cy.js' --env allure=true",
+    "test:ui": "cypress run --spec 'cypress/e2e/ui/**/*.cy.js' --env allure=true",
+    "test:all": "cypress run --env allure=true",
+    "report:allure": "allure generate allure-results --clean -o allure-report && allure open"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@shelex/cypress-allure-plugin": "^2.41.0",
+    "allure-commandline": "^2.33.0",
     "cypress": "13.17.0"
   },
   "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
