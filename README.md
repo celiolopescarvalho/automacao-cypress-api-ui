@@ -9,9 +9,6 @@ Projeto de automação de testes utilizando **Cypress** para testar a **API e a 
 - [Cypress](https://www.cypress.io/) - Framework de testes end-to-end
 - [Allure Reports](https://docs.qameta.io/allure/) - Geração de relatórios de testes
 - [Postman](https://www.postman.com/) e [SOAPUI](https://www.soapui.org/) - Testes e validações externas de API
-- [Jira](https://www.atlassian.com/software/jira), [Zephyr](https://zephyrdocs.atlassian.net/) - Gestão de testes e defeitos
-- [MongoDB](https://www.mongodb.com/), [SQL](https://www.mysql.com/) - Validações de banco
-- [OpenShift](https://www.redhat.com/openshift) - Integração com ambientes
 
 ---
 
@@ -84,4 +81,4 @@ Projeto desenvolvido por **Célio Lopes Carvalho** com foco em práticas moderna
 
 **Telefone:** 61 98407 1603
 **Email:** celiolopescarvalho@gmail.com  
-**LinkedIn:** [linkedin.com/in/celio-lopes-carvalho](https://www.linkedin.com/in/celio-lopes-carvalho/)
+🔗 [LinkedIn](https://www.linkedin.com/in/c%C3%A9lio-lopes-carvalho-544bb0a6/)
