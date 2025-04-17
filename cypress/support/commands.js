@@ -44,3 +44,20 @@ Cypress.Commands.add('criarUsuario', () => {
     });
   });
   
+  Cypress.Commands.add('editarUsuarioAleatorio', () => {
+    return cy.request('GET', 'https://serverest.dev/usuarios').then((res) => {
+      const id = res.body.usuarios[0]._id;
+  
+      return cy.request({
+        method: 'PUT',
+        url: `https://serverest.dev/usuarios/${id}`,
+        body: {
+          nome: 'Usuário Atualizado',
+          email: `usuario${Date.now()}@teste.com`,
+          password: 'teste123',
+          administrador: 'true'
+        }
+      });
+    });
+  });
+  
