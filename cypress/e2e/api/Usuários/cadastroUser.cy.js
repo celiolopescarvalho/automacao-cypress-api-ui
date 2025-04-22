@@ -1,5 +1,5 @@
 describe("ServeRest - API Usuários", () => {
-  context("sucesso", () => {
+  context("Criar Usuário", () => {
     it("deve criar usuário com dados dinâmicos", () => {
       const nome = "Maria Teste";
       const email = `maria${Date.now()}@teste.com`;

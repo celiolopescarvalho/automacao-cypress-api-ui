@@ -60,4 +60,20 @@ Cypress.Commands.add('criarUsuario', () => {
       });
     });
   });
+  Cypress.Commands.add('login', () => {
+    return cy.request({
+      method: 'POST',
+      url: 'https://serverest.dev/login',
+      body: {
+        email: 'celiolopescarvalho1@gmail.com',
+        password: 'teste123'
+      }
+    }).then((response) => {
+      expect(response.status).to.eq(200);
+      const token = response.body.authorization;
+      expect(token).to.not.be.null;
+      return token;
+    });
+  });
+  
   
