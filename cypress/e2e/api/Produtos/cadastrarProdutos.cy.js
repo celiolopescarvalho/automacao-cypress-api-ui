@@ -28,7 +28,7 @@ it('Deve criar um produto com dados aleatórios', () => {
   
         const idCriado = response.body._id;
   
-        // 🔍 Verificação extra com GET
+        // Verificação extra com GET
         cy.request({
           method: 'GET',
           url: `https://serverest.dev/produtos/${idCriado}`
