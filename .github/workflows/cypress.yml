@@ -33,20 +33,20 @@ jobs:
         run: yarn install --frozen-lockfile
 
       # 5) Debug install (verbose do Yarn)
-      - name: Debug install (verbose)
+      - name: Debug install
         run: yarn install --verbose
 
-      # 6) Debuga as dependências instaladas
-      - name: Debug Yarn install
+      # 6) Debugar lista de dependências instaladas
+      - name: Debug Yarn list
         run: yarn list --depth=1
 
-      # 7) Roda testes Cypress com verbose
+      # 7) Roda testes Cypress (sem --verbose no Yarn)
       - name: Rodar testes Cypress
         uses: cypress-io/github-action@v6
         env:
           DEBUG: cypress:cli,cypress:server
         with:
-          command: yarn test:all --verbose
+          command: yarn test:all
 
       # 8) Verifica o conteúdo de allure-results
       - name: Verificar resultados do Allure
