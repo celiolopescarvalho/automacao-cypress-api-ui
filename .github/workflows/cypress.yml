@@ -7,6 +7,9 @@ on:
     branches: [master]
   workflow_dispatch:
 
+  schedule:
+    - cron: '55 16 * * *'
+
 jobs:
   cypress-run:
     runs-on: ubuntu-latest
