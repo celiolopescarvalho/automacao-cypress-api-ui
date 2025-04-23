@@ -53,7 +53,7 @@ jobs:
       # 8) Upload dos resultados (inclui subpastas e todos os arquivos)
       - name: Upload Allure results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: allure-results
           path: allure-results/**/*
