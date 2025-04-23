@@ -7,7 +7,7 @@ on:
     branches: [master]
   workflow_dispatch:
   schedule:
-    - cron: '15 17 * * *'
+    - cron: '30 17 * * *'
 
 jobs:
   cypress-run:
@@ -36,21 +36,25 @@ jobs:
       - name: Debug install (verbose)
         run: yarn install --verbose
 
-      # 6) Roda testes Cypress sem --verbose, mas com DEBUG para mais logs
+      # 6) Debuga as dependências instaladas
+      - name: Debug Yarn install
+        run: yarn list --depth=1
+
+      # 7) Roda testes Cypress com verbose
       - name: Rodar testes Cypress
         uses: cypress-io/github-action@v6
         env:
           DEBUG: cypress:cli,cypress:server
         with:
-          command: yarn test:all
+          command: yarn test:all --verbose
 
-      # 7) Verifica o conteúdo de allure-results
+      # 8) Verifica o conteúdo de allure-results
       - name: Verificar resultados do Allure
         run: |
           echo "=== Conteúdo de allure-results ==="
           ls -R allure-results || echo "=> NÃO ENCONTRADO allure-results"
 
-      # 8) Upload dos resultados (inclui subpastas e todos os arquivos)
+      # 9) Upload dos resultados (inclui subpastas e todos os arquivos)
       - name: Upload Allure results
         if: always()
         uses: actions/upload-artifact@v4
