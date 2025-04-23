@@ -7,7 +7,7 @@ on:
     branches: [master]
   workflow_dispatch:
   schedule:
-    - cron: '10 17 * * *'
+    - cron: '15 17 * * *'
 
 jobs:
   cypress-run:
@@ -24,28 +24,36 @@ jobs:
         with:
           node-version: '18'
 
-      # 3) Garante que o Yarn 1.x esteja presente
+      # 3) Garante Yarn 1.x
       - name: Install Yarn
         run: npm install -g yarn@1.22.22
 
-      # 4) Instala dependências conforme seu lockfile
+      # 4) Instala dependências conforme lockfile
       - name: Instalar dependências
         run: yarn install --frozen-lockfile
 
-      # 5) Debug: logs detalhados na instalação
+      # 5) Debug install (verbose do Yarn)
       - name: Debug install (verbose)
         run: yarn install --verbose
 
-      # 6) Roda seus testes (inclui Allure via seu script test:all)
+      # 6) Roda testes Cypress sem --verbose, mas com DEBUG para mais logs
       - name: Rodar testes Cypress
         uses: cypress-io/github-action@v6
+        env:
+          DEBUG: cypress:cli,cypress:server
         with:
-          command: yarn test:all --verbose
+          command: yarn test:all
 
-      # 7) Coleta os resultados do Allure como artefato
+      # 7) Verifica o conteúdo de allure-results
+      - name: Verificar resultados do Allure
+        run: |
+          echo "=== Conteúdo de allure-results ==="
+          ls -R allure-results || echo "=> NÃO ENCONTRADO allure-results"
+
+      # 8) Upload dos resultados (inclui subpastas e todos os arquivos)
       - name: Upload Allure results
         if: always()
         uses: actions/upload-artifact@v3
         with:
           name: allure-results
-          path: allure-results
+          path: allure-results/**/*
