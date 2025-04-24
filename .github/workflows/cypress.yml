@@ -7,7 +7,12 @@ on:
     branches: [master]
   workflow_dispatch:
   schedule:
-    - cron: '30 17 * * *'
+   
+   - cron: '0 7 * * *'
+    - cron: '0 9 * * *'
+    - cron: '0 12 * * *'
+    - cron: '0 14 * * *'
+    - cron: '0 16 * * *'
 
 jobs:
   cypress-run:
