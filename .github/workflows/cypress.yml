@@ -37,3 +37,7 @@ jobs:
 
       - name: Debug Yarn list
         run: yarn list --depth=1
+
+      - name: Rodar testes Cypress
+        run: yarn cypress run
+
