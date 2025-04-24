@@ -36,4 +36,4 @@ jobs:
         run: yarn install --verbose
 
       - name: Debug Yarn list
-        run:
+        run: yarn list --depth=1
