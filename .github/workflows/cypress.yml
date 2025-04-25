@@ -17,6 +17,10 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
 
+    env:
+      ACTIONS_STEP_DEBUG: true
+      ACTIONS_RUNNER_DEBUG: true
+
     steps:
       - name: Checkout do código
         uses: actions/checkout@v3
@@ -26,18 +30,18 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install Yarn
+      - name: Instalar Yarn
         run: npm install -g yarn@1.22.22
 
       - name: Instalar dependências
         run: yarn install --frozen-lockfile
 
-      - name: Debug install
-        run: yarn install --verbose
-
-      - name: Debug Yarn list
-        run: yarn list --depth=1
-
       - name: Rodar testes Cypress
-        run: yarn cypress run
+        run: yarn cypress run --reporter mochawesome --reporter-options reportDir=cypress/logs,overwrite=false,html=false,json=true
 
+      - name: Salvar logs como artefato (em caso de falha)
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-logs
+          path: cypress/logs
