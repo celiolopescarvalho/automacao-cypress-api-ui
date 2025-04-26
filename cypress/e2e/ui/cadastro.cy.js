@@ -4,7 +4,8 @@ describe("Cadastro de Usuário - UI", () => {
   let senhaUsuario = "teste123";
 
   beforeEach(() => {
-    cy.visit("/cadastrarusuarios");
+    cy.visit("https://front.serverest.dev/cadastrarusuarios");
+
   });
 
   function preencherFormulario(nome, email, senha, isAdmin = false) {
@@ -29,10 +30,6 @@ describe("Cadastro de Usuário - UI", () => {
 
       preencherFormulario(nomeAdmin, emailAdmin, senhaUsuario, true);
       cy.get('[data-testid="cadastrar"]').click();
-
-      cy.url({ timeout: 10000 }).then((url) => {
-        cy.log("URL atual: " + url);
-      });
 
       cy.url({ timeout: 10000 }).should("include", "/admin/home");
       cy.contains(nomeAdmin).should("be.visible");
