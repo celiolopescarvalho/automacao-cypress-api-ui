@@ -1,0 +1,121 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-04-26T02:09:47.756Z",
+    "end": "2025-04-26T02:09:48.186Z",
+    "duration": 430,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "b7f27a94-78c3-4fe2-8920-7dd81956b59b",
+      "title": "",
+      "fullFile": "cypress\\e2e\\api\\Usuários\\listarUsuarios.cy.js",
+      "file": "cypress\\e2e\\api\\Usuários\\listarUsuarios.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "cd492dcb-7b23-45c3-b2fd-61417d55e53e",
+          "title": "ServeRest - API Usuários",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "1a594f13-576b-40c8-9ea7-32e433ed931d",
+              "title": "Listar nomes dos usuários",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "deve retornar e exibir o nome de todos os usuários cadastrados",
+                  "fullTitle": "ServeRest - API Usuários Listar nomes dos usuários deve retornar e exibir o nome de todos os usuários cadastrados",
+                  "timedOut": null,
+                  "duration": 400,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "cy.request({\n  method: \"GET\",\n  url: \"https://serverest.dev/usuarios\",\n  failOnStatusCode: false\n}).then(res => {\n  // Valida se a requisição teve sucesso\n  expect(res.status).to.eq(200);\n  // Verifica se o retorno contém um array de usuários\n  expect(res.body).to.have.property(\"usuarios\");\n  expect(res.body.usuarios).to.be.an(\"array\");\n  // Extrai e exibe os nomes dos usuários\n  const nomes = res.body.usuarios.map(usuario => usuario.nome);\n  // Log visual no Cypress\n  cy.log(`Nomes dos usuários: ${nomes.join(\", \")}`);\n  // Log detalhado no console do navegador\n  console.log(\"Nomes dos usuários encontrados:\");\n  nomes.forEach((nome, index) => {\n    console.log(`${index + 1}. ${nome}`);\n  });\n});",
+                  "err": {},
+                  "uuid": "f6073df7-27da-4322-9fef-546fec87f84e",
+                  "parentUUID": "1a594f13-576b-40c8-9ea7-32e433ed931d",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "f6073df7-27da-4322-9fef-546fec87f84e"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 400,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
