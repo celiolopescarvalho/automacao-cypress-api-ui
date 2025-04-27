@@ -1,27 +1,4 @@
-// Criar usuário padrão
-Cypress.Commands.add('criarUsuario', () => {
-  const usuario = {
-    nome: "João Teste",
-    email: `joao${Date.now()}@teste.com`,
-    password: "teste123",
-    administrador: "true"
-  };
-
-  return cy.request({
-    method: "POST",
-    url: "https://serverest.dev/usuarios",
-    body: usuario,
-    failOnStatusCode: false
-  }).then((res) => {
-    return {
-      id: res.body._id,
-      usuarioCriado: usuario,
-      res
-    };
-  });
-});
-
-// Criar usuário com variáveis
+// Criar usuario com variaveis
 Cypress.Commands.add('criarUsuarioComVariaveis', (nome, email, password, administrador) => {
   const usuario = {
     nome,
@@ -89,20 +66,6 @@ Cypress.Commands.add('verificaSeUsuarioExiste', (email) => {
   });
 });
 
-Cypress.Commands.add('criarUsuario', () => {
-  return cy.request({
-    method: 'POST',
-    url: 'https://serverest.dev/usuarios',
-    body: {
-      nome: 'Célio Automação',
-      email: 'celiolopescarvalho1@gmail.com',
-      password: 'teste123',
-      administrador: 'true'
-    },
-    failOnStatusCode: false
-  });
-});
-
 Cypress.Commands.add('garanteUsuarioLogado', () => {
   const email = 'celiolopescarvalho1@gmail.com';
 
@@ -114,7 +77,3 @@ Cypress.Commands.add('garanteUsuarioLogado', () => {
     }
   });
 });
-
-
-
-
