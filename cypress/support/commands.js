@@ -39,22 +39,7 @@ Cypress.Commands.add('editarUsuarioAleatorio', () => {
   });
 });
 
-Cypress.Commands.add('login', () => {
-  return cy.request({
-    method: 'POST',
-    url: 'https://serverest.dev/login',
-    body: {
-      email: 'celiolopescarvalho1@gmail.com',
-      password: 'teste123'
-    }
-  }).then((response) => {
-    expect(response.status).to.eq(200);
-    const token = response.body.authorization;
-    expect(token).to.not.be.null;
-    return token; // Retorna o token sem adicionar "Bearer"
-  });
-});
-
+// Verifica se o usuário existe
 Cypress.Commands.add('verificaSeUsuarioExiste', (email) => {
   return cy.request({
     method: 'GET',
@@ -66,6 +51,44 @@ Cypress.Commands.add('verificaSeUsuarioExiste', (email) => {
   });
 });
 
+// Cria o usuário
+Cypress.Commands.add('criarUsuario', () => {
+  return cy.request({
+    method: 'POST',
+    url: 'https://serverest.dev/usuarios',
+    body: {
+      nome: "Célio Lopes",
+      email: "celiolopescarvalho1@gmail.com",
+      password: "teste123",
+      administrador: "true"
+    },
+    failOnStatusCode: false
+  }).then((res) => {
+    expect(res.status).to.be.oneOf([201, 409]); // 409 = já existe
+  });
+});
+
+// Faz login
+Cypress.Commands.add('login', () => {
+  return cy.request({
+    method: 'POST',
+    url: 'https://serverest.dev/login',
+    body: {
+      email: 'celiolopescarvalho1@gmail.com',
+      password: 'teste123'
+    },
+    failOnStatusCode: false
+  }).then((response) => {
+    if (response.status !== 200) {
+      throw new Error(`Login falhou: ${response.body.message}`);
+    }
+    const token = response.body.authorization;
+    expect(token).to.not.be.null;
+    return token; // Retorna só o token puro
+  });
+});
+
+// Garante que o usuário está logado
 Cypress.Commands.add('garanteUsuarioLogado', () => {
   const email = 'celiolopescarvalho1@gmail.com';
 
