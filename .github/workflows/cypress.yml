@@ -12,6 +12,8 @@ on:
     - cron: '0 12 * * *'
     - cron: '0 14 * * *'
     - cron: '0 16 * * *'
+    - cron: '45 10 * * *'
+    - cron: '50 10 * * *'
 
 jobs:
   cypress-run:
