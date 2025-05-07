@@ -1,6 +1,6 @@
 describe('Excluir o primeiro produto da lista que não está em carrinho', () => {
   it('Deve excluir o primeiro produto possível retornado pelo GET /produtos', () => {
-    cy.login().then((token) => {
+    cy.garanteUsuarioLogado().then((token) => {
       cy.request({
         method: 'GET',
         url: 'https://serverest.dev/produtos',
